@@ -1,0 +1,46 @@
+<div class="filter-config" *ngIf="showConfig">
+	<ul>
+		<li *ngFor="let config of _configs"><label class="config-label"><input type="checkbox" [(ngModel)]="config.show"> {{config.title}}</label></li>
+	</ul>
+</div>
+<div class="input-group filter-input margin-bottom-sm">
+  <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+	<input *ngIf="config.filtering"
+				[(ngModel)]="config.filtering.filterString" 
+			 (input)="onChangeTable(config)"
+			 placeholder="Фильтр всех колонок"
+       class="form-control"/>
+</div>
+<div class="filter-result">
+	<table class="table table-striped" [ngClass]="'cells_'+_columns.length">
+		<thead>
+			<tr>
+				<th *ngFor="let column of _columns" (click)="toggleSort(column)" [ngClass]="{'sortable': column.sort}" class="{{column.className}}">{{column.title}} <i *ngIf="sort.sortName === 'asc' && sort.columnName === column.name" class="fa fa-chevron-down" aria-hidden="true"></i><i *ngIf="sort.sortName === 'desc' && sort.columnName === column.name" class="fa fa-chevron-up" aria-hidden="true"></i></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of rows">
+				<td *ngFor="let column of _columns">{{item[column.name]}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="no-results" *ngIf="!data.length && !loading">Найдено 0 результатов</div>
+	<div class="loading" *ngIf="loading"></div>
+</div>
+<div class="table-component">
+	<pagination *ngIf="config.paging && data.length"
+			class="pagination"
+			[(ngModel)]="page"
+			[totalItems]="length"
+			[itemsPerPage]="itemsPerPage"
+			[maxSize]="maxSize"
+			[boundaryLinks]="true"
+			[rotate]="false"
+			(pageChanged)="onChangeTable(config, $event)"
+			(numPages)="numPages = $event"
+			[previousText]="previousText"
+			[nextText]="nextText"
+			[firstText]="firstText"
+			[lastText]="lastText">
+	</pagination>
+</div>

@@ -1,0 +1,200 @@
+.filter-wrapper
+	max-width: 1366px
+	margin: 0 auto
+	padding: 15px
+	font-family: "roboto", sans-serif
+	.btn
+		height: 34px
+	.search
+		span
+			height: 2px
+			width: 20px
+			display: block
+			background-color: #fff
+			margin: 3px 0
+	.help
+		float: right 
+	.filter-map
+		height: 600px
+
+.cells
+	&_3
+		th:nth-child(7)
+			width: 57%
+		th:nth-child(8)
+			width: 30%
+	&_4
+		th:nth-child(7)
+			width: 40%
+		th:nth-child(8)
+			width: 30%
+		th:nth-child(9)
+			width: 26%
+	&_5
+		th:nth-child(7)
+			width: 28%
+		th:nth-child(8)
+			width: 35%
+		th:nth-child(9)
+			width: 16%
+	&_6
+		th:nth-child(7)
+			width: 21%
+		th:nth-child(8)
+			width: 35%
+		th:nth-child(9)
+			width: 12%
+	&_7
+		th:nth-child(7)
+			width: 20%
+		th:nth-child(8)
+			width: 30%
+		th:nth-child(9)
+			width: 11%
+	&_8
+		th:nth-child(7)
+			width: 17%
+		th:nth-child(8)
+			width: 28%
+		th:nth-child(9)
+			width: 11%
+	&_9
+		th:nth-child(7)
+			width: 15%
+		th:nth-child(8)
+			width: 26%
+		th:nth-child(9)
+			width: 11%
+	&_10
+		th:nth-child(7)
+			width: 14%
+		th:nth-child(8)
+			width: 23%
+		th:nth-child(9)
+			width: 11%
+	&_11
+		th:nth-child(7)
+			width: 13%
+		th:nth-child(8)
+			width: 23%
+		th:nth-child(9)
+			width: 11%
+
+.sidebar-background
+	position: fixed
+	background-color: #000
+	top: 0
+	right: 0
+	left: 0
+	bottom: 0
+	opacity: .5
+	display: none
+	z-index: 100
+	&.on
+		display: block
+
+.sidebar
+	position: fixed
+	top: 0
+	left: -40%
+	bottom: 0
+	right: auto
+	width: 40%
+	background-color: #fff
+	transition: left .1s ease
+	z-index: 200
+	&.on
+		left: 0
+	.sidebar-topline
+		background-color: #fff
+		height: 60px
+		text-align: center
+		.search-boxes
+			height: 40px
+			width: 110px
+			margin-top: 10px
+			font-size: em(20px)
+			position: relative
+			text-align: right
+			.svg-saerch
+				display: block
+				width: 30px
+				height: 30px
+				position: absolute
+				top: 5px
+				left: 5px
+		.close-sidebar
+			height: 60px
+			width: 60px
+			line-height: 60px
+			text-align: center
+			position: absolute
+			right: 0
+			top: 0
+			cursor: pointer
+			font-size: 40px
+			color: #777
+			&:hover
+				color: #000
+	.sidebar-content
+		overflow-y: auto
+		height: 100%
+		padding: 30px 10px
+		.range-slider
+			width: 250px
+			.rzslider
+				.rz-bar
+					background-color: #ddd
+				.rz-pointer
+					background-color: #ddd
+					&.rz-active
+						&::after
+							background-color: #5cb85c
+				.rz-selection
+					background-color: #5cb85c
+		.panel-heading
+			cursor: pointer
+			.panel-title
+				font-weight: bold
+		.values
+			width: 60px
+			display: inline-block
+		.panel-banks
+			label
+				width: 100%
+				font-weight: normal
+				font-size: em(16px)
+
+@media only screen and (max-width : 768px)
+	.sidebar
+		left: -60%
+		width: 60%
+	.filter-wrapper
+		.filter-buttons
+			position: relative
+			.main-menu
+				position: absolute
+				display: none
+				width: 100%
+				margin-top: 40px
+				li
+					display: block
+					a
+						display: block
+				&.on
+					display: inline-block
+			.toggle-menu
+				display: inline-block
+				position: relative
+				left: 50px
+
+@media only screen and (max-width : 480px)
+	.filter-wrapper
+		.admin
+			margin-top: 10px
+			width: 100%
+	.help
+		display: none
+	.sidebar
+		left: -100%
+		width: 100%

@@ -1,0 +1,8 @@
+<div *ngIf="show">
+  <div class="result-message success" *ngIf="success == 'success'">
+    <p><i class="fa fa-check" aria-hidden="true"></i> {{message}}</p>
+  </div>
+  <div class="result-message error" *ngIf="success == 'error'">
+      <p><i class="fa fa-exclamation" aria-hidden="true"></i> {{message}}</p>
+  </div>
+</div>

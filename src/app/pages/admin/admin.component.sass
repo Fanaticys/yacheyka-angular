@@ -1,0 +1,85 @@
+header
+    height: 65px
+    background-color: #282828
+    overflow: hidden
+    button
+        &.small
+            display: none
+    span
+        display: block
+        line-height: 65px
+        float: left
+        cursor: pointer
+        i
+            padding: 0 12px
+            color: #427fc0
+    img
+        float: left
+        border-radius: 50%
+        height: 45px
+        margin-top: 10px
+        margin-left: 10px
+    .user
+        float: left
+        color: #DDD
+        font-size: 14px
+        margin-left: 10px
+        height: 49px
+        margin-top: 8px
+        p, label
+            line-height: 14px
+    .exit
+        float: right
+        margin-top: 15px
+        margin-right: 10px
+        font-size: 14px
+
+.adm-container
+    position: relative
+    min-height: 100vh
+    background-color: #427fc0
+    .adm-sidebar
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        float: left
+        background-color: #282828
+        color: #ddd
+        z-index: 100
+        ul
+            li
+                height: 40px
+                line-height: 40px
+                cursor: pointer
+                &:focus
+                    outline: none
+                &.active
+                    background-color: #427fc0
+                i
+                    margin: 0 12px
+                label
+                    width: 140px
+                    cursor: pointer
+    .adm-content
+        margin-left: 180px
+        padding: 15px
+        background-color: #427fc0
+        &.on
+            margin-left: 40px
+
+@media only screen and (max-width : 480px)
+    header
+        button
+            &.large
+                display: none
+            &.small
+                display: block
+    .adm-container
+        .adm-sidebar
+            &.off
+                left: -40px
+        .adm-content
+            margin-left: 0
+            &.on
+                margin-left: 0        

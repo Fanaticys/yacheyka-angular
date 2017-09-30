@@ -1,0 +1,90 @@
+<div class="add-wrapper">
+    <h3>Добавить запись</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Добавить ячейку</div>
+        <div class="panel-body">
+            <div class="row">
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>ID банка</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.bank_id">
+                </div>
+                <div class="form-group">
+                    <label>Имя банка</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.bank">
+                </div>
+                <div class="form-group">
+                    <label>Адрес</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.address">
+                </div>
+                <div class="form-group">
+                    <label>Город</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.town">
+                </div>
+            </div>
+            
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Высота</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.height">
+                </div>
+                <div class="form-group">
+                    <label>Ширина</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.width">
+                </div>
+                <div class="form-group">
+                    <label>Глубина</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.length">
+                </div>
+                <div class="form-group">
+                    <label>Залог</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.deposit">
+                </div>                       
+            </div>
+            
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>Cрок</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.min_term">
+                </div>
+                <div class="form-group">
+                    <label>Цена за день</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.price_per_day">
+                </div>
+                <div class="form-group">
+                    <label>Цена за месяц</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.price_per_month">
+                </div>
+                <div class="form-group">
+                    <label>До 3 месяцев</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.price_for_3_months">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>До 6 месяцев</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.price_for_6_months">
+                </div>
+                <div class="form-group">
+                    <label>До 1 года</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.price_per_year">
+                </div>
+                <div class="form-group">
+                    <label>Больше 1 года</label>
+                    <input type="text" class="form-control" [(ngModel)]="box.price_more_year">
+                </div>
+            </div>
+
+            </div>         
+            
+            <div class="row">
+                <button type="submit" (click)="addBox()" class="btn">Добавить</button>
+            </div>
+            
+        </div>
+    </div>
+</div>

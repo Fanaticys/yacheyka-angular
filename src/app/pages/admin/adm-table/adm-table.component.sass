@@ -1,0 +1,164 @@
+.popover__wrapper
+  position: relative
+  display: inline-block
+  float: left
+
+.popover__content
+	opacity: 0
+	visibility: hidden
+	position: absolute
+	border-radius: 5px
+	transform: translate(0, 30px)
+	background-color: #fff
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26)
+	width: 290px
+	&:before
+		position: absolute
+		z-index: -1
+		content: ''
+		left: 11px
+		top: -8px
+		border-style: solid
+		border-width: 0 10px 10px 10px
+		border-color: transparent transparent #fff transparent
+		transition-duration: 0.3s
+		transition-property: transform
+	&.on
+		z-index: 10
+		opacity: 1
+		visibility: visible
+		transform: translate(0, 10px)
+		transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97)		
+
+.adm-filter-config
+	.filter-config
+		ul
+			list-style-type: none
+			padding: 0
+			li
+				display: inline-block
+				width: 145px
+				padding: 20px
+				label
+					font-weight: normal
+					cursor: pointer
+	.config
+		box-shadow: 1px 1px 4px
+	.filter-input
+		margin-left: 50px
+		box-shadow: 1px 1px 4px
+.filter-result
+	overflow-x: auto
+	position: relative
+	min-height: 260px
+	background-color: #fff
+	margin-top: 15px
+	border-radius: 5px
+	box-shadow: 1px 1px 4px
+	.table
+		border-bottom: none
+		.sortable
+			cursor: pointer
+		.price
+			min-width: 76px
+		.height
+			min-width: 98px
+		.width
+			min-width: 102px
+		.length
+			min-width: 103px
+		.deposit
+			min-width: 83px
+		.min_term
+			min-width: 85px
+		.bank
+			min-width: 100px
+		.address
+			min-width: 135px
+		.town
+			min-width: 84px
+
+.cells
+	&_3
+		.bank
+			width: 57%
+		.address
+			width: 30%
+	&_4
+		.bank
+			width: 40%
+		.address
+			width: 30%
+		.town
+			width: 26%
+	&_5
+		.bank
+			width: 28%
+		.address
+			width: 35%
+		.town
+			width: 16%
+	&_6
+		.bank
+			width: 21%
+		.address
+			width: 35%
+		.town
+			width: 12%
+	&_7
+		.bank
+			width: 20%
+		.address
+			width: 30%
+		.town
+			width: 11%
+	&_8
+		.bank
+			width: 17%
+		.address
+			width: 28%
+		.town
+			width: 11%
+	&_9
+		.bank
+			width: 15%
+		.address
+			width: 26%
+		.town
+			width: 11%
+	&_10
+		.bank
+			width: 14%
+		.address
+			width: 23%
+		.town
+			width: 11%
+	&_11
+		.bank
+			width: 13%
+		.address
+			width: 23%
+		.town
+			width: 11%
+
+pagination
+	margin-right: 15px
+
+.modal-edit-box
+	position: fixed
+	background: rgba(0, 0, 0, 0.9)
+	top: 0
+	right: 0
+	left: 0
+	bottom: 0
+	z-index: 100
+	color: #fff
+	overflow-y: auto
+	.edit-container
+		padding: 100px 0
+		text-align: center
+		.btn 
+			margin: 20px 10px
+		label
+			font-weight: normal
+			text-align: left

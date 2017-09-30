@@ -1,0 +1,100 @@
+<div class='adm-table-wrapper'>	
+	<div class="adm-filter-config">
+		
+		<div class="popover__wrapper">
+			<button type="button" class="btn btn-default config" (click)="toggleConfig()">
+				<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+			</button>
+			<div class="push popover__content" [ngClass]="{'on': showConfig}">
+				<div class="filter-config">
+					<ul>
+						<li *ngFor="let config of _configs"><label class="config-label"><input type="checkbox" [(ngModel)]="config.show"> {{config.title}}</label></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="input-group filter-input">
+		<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+			<input *ngIf="config.filtering"
+						[(ngModel)]="config.filtering.filterString" 
+					(input)="onChangeTable(config)"
+					placeholder="Фильтр всех колонок"
+			class="form-control"/>
+		</div>
+	</div>
+	<div class="filter-result" *ngIf="data">
+		<table class="table table-striped" [ngClass]="'cells_'+_columns.length">
+			<thead>
+				<tr>
+					<th *ngFor="let column of _columns" (click)="toggleSort(column)" [ngClass]="{'sortable': column.sort}" class="{{column.className}}">{{column.title}} <i *ngIf="sort.sortName === 'asc' && sort.columnName === column.name" class="fa fa-chevron-down" aria-hidden="true"></i><i *ngIf="sort.sortName === 'desc' && sort.columnName === column.name" class="fa fa-chevron-up" aria-hidden="true"></i></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody [@deletingAnimation]="countOfDelated">
+				<tr *ngFor="let item of rows" [ngClass]="item.class">
+					<td *ngFor="let column of _columns">{{item[column.name]}}</td>
+					<td><button class="btn" (click)="deleteBox(item)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+					<td><button class="btn" (click)="openUpdating(item)"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="no-results" *ngIf="!data.length && !loading">Найдено 0 результатов</div>
+		<div class="loading" *ngIf="loading"></div>
+	</div>
+
+	<div class="row">
+		<div class="adm-table-component">
+			<pagination *ngIf="config.paging && data.length"
+				class="pagination"
+				[(ngModel)]="page"
+				[totalItems]="length"
+				[itemsPerPage]="itemsPerPage"
+				[maxSize]="maxSize"
+				[boundaryLinks]="true"
+				[rotate]="false"
+				(pageChanged)="onChangeTable(config, $event)"
+				(numPages)="numPages = $event"
+				[previousText]="previousText"
+				[nextText]="nextText"
+				[firstText]="firstText"
+				[lastText]="lastText">
+			</pagination>
+		</div>
+	</div>
+</div>
+
+<div class="modal-edit-box" *ngIf="isUpdating" @changeAnimationParent>
+	<div class="edit-container" @changeAnimationChild>
+	<div class="container">
+		<div class="row">
+			<label class="col-md-2">ID Банка<br><input class="form-control" [(ngModel)]="modalBox.bank_id" type="text"></label>
+			<label class="col-md-2">Имя банка<br><input class="form-control" [(ngModel)]="modalBox.bank" type="text"></label>
+			<label class="col-md-2">Высота<br><input class="form-control" [(ngModel)]="modalBox.height" type="text"></label>
+			<label class="col-md-2">Ширина<br><input class="form-control" [(ngModel)]="modalBox.width" type="text"></label>
+			<label class="col-md-2">Глубина<br><input class="form-control" [(ngModel)]="modalBox.length" type="text"></label>
+			<label class="col-md-2">Адрес<br><input class="form-control" [(ngModel)]="modalBox.address" type="text"></label>
+		</div>
+		<div class="row">
+			<label class="col-md-2">Город<br><input class="form-control" [(ngModel)]="modalBox.town" type="text"></label>
+			<label class="col-md-2">Cрок<br><input class="form-control" [(ngModel)]="modalBox.min_term" type="text"></label>
+			<label class="col-md-2">Залог<br><input class="form-control" [(ngModel)]="modalBox.deposit" type="text"></label>
+			<label class="col-md-2">Цена за день<br><input class="form-control" [(ngModel)]="modalBox.price_per_day" type="text"></label>
+			<label class="col-md-2">Цена за месяц<br><input class="form-control" [(ngModel)]="modalBox.price_per_month" type="text"></label>
+			<label class="col-md-2">До 3 месяцев<br><input class="form-control" [(ngModel)]="modalBox.price_for_3_months" type="text"></label>
+		</div>
+		<div class="row">
+			<label class="col-md-2">До 6 месяцев<br><input class="form-control" [(ngModel)]="modalBox.price_for_6_months" type="text"></label>
+			<label class="col-md-2">До 1 года<br><input class="form-control" [(ngModel)]="modalBox.price_per_year" type="text"></label>
+			<label class="col-md-2">Больше 1 года<br><input class="form-control" [(ngModel)]="modalBox.price_more_year" type="text"></label>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="btn btn-primary" (click)="updateBox()">Сохранить</div>
+				<div class="btn btn-default" (click)="closeUpdating()">Отмена</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>

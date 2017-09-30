@@ -1,0 +1,101 @@
+@import "../../../mixin";
+
+header
+	&.bg-1
+		background-image: url(../../../assets/img/1.jpg)
+	&.bg-2
+		background-image: url(../../../assets/img/2.jpg)
+	&.bg-3
+		background-image: url(../../../assets/img/3.jpg)
+	min-height: 600px
+	background-size: cover
+	background-position: center
+	position: relative
+	transition: background-image 1s ease-in-out
+	&::before
+		content: ''
+		width: 100%
+		height: 100%
+		position: absolute
+		top: 0
+		left: 0
+		background-color: #000
+		opacity: .3
+	.header-content
+		position: relative
+	.top-line
+		overflow: hidden
+		.language
+			float: right
+			li
+				margin: 20px 5px
+				color: #fff
+				list-style: none
+				text-transform: uppercase
+				display: inline-block
+				height: 20px
+				width: 24px
+				font-size: em(14px)
+				line-height: 20px
+				text-align: center
+				&:last-child
+					margin-right: 20px
+	.middle-line
+		color: #fff
+		text-align: center
+		margin-top: 90px
+		h1
+			font-family: "RalewayBold", sans-serif
+			font-size: em(60px)
+		h2
+			text-shadow: 0 -1px 2px rgba(0,0,0,.2)
+			margin-top: 50px
+			margin-bottom: 75px
+			font-family: "RalewayRegular", sans-serif
+			font-size: em(24px)
+			font-weight: normal
+			letter-spacing: 1px
+		.filter-button
+			text-shadow: 0 -1px 2px rgba(0,0,0,.2)
+			transition: .1s ease-in-out
+			font-family: "RalewayBold", sans-serif
+			font-size: em(36px)
+			display: inline-block
+			width: 240px
+			height: 60px
+			&:hover
+				font-size: em(34px)
+			&:active
+				font-size: em(32px)
+			&:focus
+				font-size: em(32px)
+
+footer
+	background-color: #000
+	p
+		margin: 0
+		line-height: 60px
+		color: #fff
+		font-size: em(12px)
+		font-weight: normal
+		letter-spacing: 1px
+	.copyright
+		float: left
+	.email
+		float: right
+		
+@media only screen and (max-width : 480px)
+	header
+		.middle-line
+			h1
+				font-size: em(48px)
+			h4
+				line-height: 1.3
+	footer
+		p
+			line-height: 40px
+		.email
+			margin-top: 30px	
+		.email, .copyright
+			float: none
+			text-align: center

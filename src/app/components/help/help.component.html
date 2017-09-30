@@ -1,0 +1,10 @@
+<div class="help-wrapper" *ngIf="show" @helpComponentAnimation>
+  <div class="help-background">
+    <div class="help">
+        <div class="help-close" (click)="toggleShow()"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <div class="help-content">
+          <ng-content></ng-content>
+        </div>
+    </div>    
+  </div>
+</div>

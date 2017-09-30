@@ -1,0 +1,22 @@
+<header>
+    <span (click)="toggleSidebar()"><i class="fa fa-exchange" aria-hidden="true"></i></span>
+    <img src="{{profile?.user_metadata?.picture || profile?.picture}}" alt="avatar">
+    <div class="user">
+        <label><i class="fa fa-user" aria-hidden="true"></i> User:</label>
+        <p>{{profile?.name}}</p>
+    </div>
+    <button type="button" class="btn exit large" (click)="auth.logout()"><i class="fa fa-external-link" aria-hidden="true"></i> Выход</button>
+    <button type="button" class="btn exit small" (click)="auth.logout()"><i class="fa fa-external-link" aria-hidden="true"></i></button>
+</header>
+<div class="adm-container">
+    <div class="adm-sidebar" [ngClass]="{'off': sidebar}">
+        <ul>
+            <li [routerLinkActive]="['active']" routerLink="/admin/table"><i class="fa fa-th-list" aria-hidden="true"></i><label [ngClass]="{'hidden': sidebar}">Таблица</label></li>
+            <li [routerLinkActive]="['active']" routerLink="/admin/add"><i class="fa fa-plus" aria-hidden="true"></i><label [ngClass]="{'hidden': sidebar}">Добавить</label></li>
+        </ul>
+    </div>
+    <div class="adm-content" [ngClass]="{'on': sidebar}">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<app-result-handler></app-result-handler>
