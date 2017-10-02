@@ -65,36 +65,36 @@
 	</div>
 </div>
 
-<div class="modal-edit-box" *ngIf="isUpdating" @changeAnimationParent>
-	<div class="edit-container" @changeAnimationChild>
-	<div class="container">
-		<div class="row">
-			<label class="col-md-2">ID Банка<br><input class="form-control" [(ngModel)]="modalBox.bank_id" type="text"></label>
-			<label class="col-md-2">Имя банка<br><input class="form-control" [(ngModel)]="modalBox.bank" type="text"></label>
-			<label class="col-md-2">Высота<br><input class="form-control" [(ngModel)]="modalBox.height" type="text"></label>
-			<label class="col-md-2">Ширина<br><input class="form-control" [(ngModel)]="modalBox.width" type="text"></label>
-			<label class="col-md-2">Глубина<br><input class="form-control" [(ngModel)]="modalBox.length" type="text"></label>
-			<label class="col-md-2">Адрес<br><input class="form-control" [(ngModel)]="modalBox.address" type="text"></label>
-		</div>
-		<div class="row">
-			<label class="col-md-2">Город<br><input class="form-control" [(ngModel)]="modalBox.town" type="text"></label>
-			<label class="col-md-2">Cрок<br><input class="form-control" [(ngModel)]="modalBox.min_term" type="text"></label>
-			<label class="col-md-2">Залог<br><input class="form-control" [(ngModel)]="modalBox.deposit" type="text"></label>
-			<label class="col-md-2">Цена за день<br><input class="form-control" [(ngModel)]="modalBox.price_per_day" type="text"></label>
-			<label class="col-md-2">Цена за месяц<br><input class="form-control" [(ngModel)]="modalBox.price_per_month" type="text"></label>
-			<label class="col-md-2">До 3 месяцев<br><input class="form-control" [(ngModel)]="modalBox.price_for_3_months" type="text"></label>
-		</div>
-		<div class="row">
-			<label class="col-md-2">До 6 месяцев<br><input class="form-control" [(ngModel)]="modalBox.price_for_6_months" type="text"></label>
-			<label class="col-md-2">До 1 года<br><input class="form-control" [(ngModel)]="modalBox.price_per_year" type="text"></label>
-			<label class="col-md-2">Больше 1 года<br><input class="form-control" [(ngModel)]="modalBox.price_more_year" type="text"></label>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="btn btn-primary" (click)="updateBox()">Сохранить</div>
-				<div class="btn btn-default" (click)="closeUpdating()">Отмена</div>
+<app-modal>
+	<div class="edit-container">
+		<div class="container">
+			<div class="row">
+				<label class="col-md-2">ID Банка<br><input class="form-control" [(ngModel)]="modalBox.bank_id" type="text"></label>
+				<label class="col-md-2">Имя банка<br><input class="form-control" [(ngModel)]="modalBox.bank" type="text"></label>
+				<label class="col-md-2">Высота<br><input class="form-control" [(ngModel)]="modalBox.height" type="text"></label>
+				<label class="col-md-2">Ширина<br><input class="form-control" [(ngModel)]="modalBox.width" type="text"></label>
+				<label class="col-md-2">Глубина<br><input class="form-control" [(ngModel)]="modalBox.length" type="text"></label>
+				<label class="col-md-2">Адрес<br><input class="form-control" [(ngModel)]="modalBox.address" type="text"></label>
+			</div>
+			<div class="row">
+				<label class="col-md-2">Город<br><input class="form-control" [(ngModel)]="modalBox.town" type="text"></label>
+				<label class="col-md-2">Cрок<br><input class="form-control" [(ngModel)]="modalBox.min_term" type="text"></label>
+				<label class="col-md-2">Залог<br><input class="form-control" [(ngModel)]="modalBox.deposit" type="text"></label>
+				<label class="col-md-2">Цена за день<br><input class="form-control" [(ngModel)]="modalBox.price_per_day" type="text"></label>
+				<label class="col-md-2">Цена за месяц<br><input class="form-control" [(ngModel)]="modalBox.price_per_month" type="text"></label>
+				<label class="col-md-2">До 3 месяцев<br><input class="form-control" [(ngModel)]="modalBox.price_for_3_months" type="text"></label>
+			</div>
+			<div class="row">
+				<label class="col-md-2">До 6 месяцев<br><input class="form-control" [(ngModel)]="modalBox.price_for_6_months" type="text"></label>
+				<label class="col-md-2">До 1 года<br><input class="form-control" [(ngModel)]="modalBox.price_per_year" type="text"></label>
+				<label class="col-md-2">Больше 1 года<br><input class="form-control" [(ngModel)]="modalBox.price_more_year" type="text"></label>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="btn btn-primary" (click)="updateBox()">Сохранить</div>
+					<div class="btn btn-default" (click)="closeUpdating()">Отмена</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-</div>
+</app-modal>

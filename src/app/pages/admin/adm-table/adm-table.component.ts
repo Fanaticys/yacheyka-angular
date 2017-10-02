@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { adminRouteAnimation } from "../../../_animations/admin-route.animation";
 import { BoxesService } from '../../../services/boxes.service';
-import { boxesAnimation } from "../../../_animations/boxes.animation";
+import { adminTableAnimation } from "../../../_animations/admin-table.animation";
 import { ComponentService } from "../../../services/component.service";
 
 @Component({
@@ -10,9 +10,7 @@ import { ComponentService } from "../../../services/component.service";
   styleUrls: ['./adm-table.component.sass'],
   animations: [ 
     adminRouteAnimation,
-    boxesAnimation.deleting,
-    boxesAnimation.changing.parent,
-    boxesAnimation.changing.child
+    adminTableAnimation
   ]
 })
 export class AdmTableComponent implements OnInit {
@@ -50,7 +48,6 @@ export class AdmTableComponent implements OnInit {
     paging: true,
     filtering: {filterString: ''}
   };
-  public isUpdating;
   public modalBox = {};
   public copyModalBox = {};
   public get _columns(){
@@ -64,7 +61,7 @@ export class AdmTableComponent implements OnInit {
     });
   };
 
-  loading: boolean = false;
+  loading: boolean;
   data:Array<any> = [];
 
   searchBoxes(){
@@ -190,18 +187,14 @@ export class AdmTableComponent implements OnInit {
     });
   }
 
-  public test(data){
-    console.log(data._id);
-  }
-
   public openUpdating(box){
-    this.isUpdating = true;
+    this.componentService.showModal(true);
     this.modalBox = box;
     Object.assign(this.copyModalBox, box);
   }
 
-  public updateBox(box){
-    this.isUpdating = false;
+  public updateBox(){
+    this.componentService.showModal(false);
     this.boxesService
       .updateBox(this.modalBox)
       .subscribe(
@@ -211,9 +204,7 @@ export class AdmTableComponent implements OnInit {
   }
 
   public closeUpdating(){
-    this.isUpdating = false;
-    for(let property in this.copyModalBox){
-      this.modalBox[property] = this.copyModalBox[property];
-    }
+    this.componentService.showModal(false);
+    Object.assign(this.modalBox, this.copyModalBox);
   }
 }

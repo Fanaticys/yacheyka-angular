@@ -25,6 +25,7 @@ import { AddComponent } from './pages/admin/add/add.component';
 import { AdmTableComponent } from './pages/admin/adm-table/adm-table.component';
 import { HelpComponent } from './components/help/help.component';
 import { ResultHandlerComponent } from './components/result-handler/result-handler.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -46,7 +47,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AddComponent,
     AdmTableComponent,
     HelpComponent,
-    ResultHandlerComponent
+    ResultHandlerComponent,
+    ModalComponent
   ],
   imports: [
     PaginationModule.forRoot(),
