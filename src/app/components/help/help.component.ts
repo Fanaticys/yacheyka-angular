@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { helpComponentAnimation } from '../../_animations/help-component.animation';
+import { helpComponentAnimation } from './help.animation';
 
 @Component({
   selector: 'app-help',

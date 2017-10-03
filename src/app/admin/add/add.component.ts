@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
-import { BoxesService } from "../../../services/boxes.service";
-import { ComponentService } from "../../../services/component.service";
-import { adminRouteAnimation } from "../../../_animations/admin-route.animation";
+import { BoxesService } from "../../_services/boxes.service";
+import { ComponentService } from "../../_services/component.service";
+import { adminRouteAnimation } from "../admin.animation";
 
 @Component({
   selector: 'app-add',

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
-import { BoxesService } from '../../services/boxes.service';
-import { AuthService } from "../../auth0/auth.service";
-import { routeAnimation } from "../../_animations/route.animation";
+import { BoxesService } from '../_services/boxes.service';
+import { AuthService } from "../_auth0/auth.service";
+import { routeAnimation } from "../_animations/route.animation";
 
 @Component({
   selector: 'app-search',

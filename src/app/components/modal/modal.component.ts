@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { modalAnimation } from '../../_animations/modal.animation';
-import { ComponentService } from '../../services/component.service';
+import { modalAnimation } from './modal.animation';
+import { ComponentService } from '../../_services/component.service';
 import { Subscription } from 'rxjs';
 
 @Component({
