@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
-import { BoxesService } from "../../_services/boxes.service";
-import { ComponentService } from "../../_services/component.service";
+import { BoxesService } from "../../core/boxes.service";
+import { ComponentService } from "../../core/component.service";
 import { adminRouteAnimation } from "../admin.animation";
 
 @Component({

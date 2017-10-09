@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
-import { routeAnimation } from "../_animations/route.animation";
+import { routeAnimation } from "../route.animation";
 
 @Component({
   selector: 'app-home',

@@ -12,9 +12,9 @@ import { ResultHandlerComponent } from '../components/result-handler/result-hand
 @NgModule({
   imports: [
     CommonModule,
-    AdminRoutingModule,
     FormsModule,
-    PaginationModule
+    PaginationModule.forRoot(),
+    AdminRoutingModule
   ],
   declarations: [
     AdminComponent,

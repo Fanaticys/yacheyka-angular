@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { adminRouteAnimation, adminTableAnimation } from "../admin.animation";
-import { BoxesService } from '../../_services/boxes.service';
-import { ComponentService } from "../../_services/component.service";
+import { BoxesService } from '../../core/boxes.service';
+import { ComponentService } from "../../core/component.service";
 
 @Component({
   selector: 'app-adm-table',

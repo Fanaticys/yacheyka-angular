@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { ComponentService } from "../../_services/component.service";
+import { ComponentService } from "../../core/component.service";
 
 @Component({
   selector: 'app-result-handler',

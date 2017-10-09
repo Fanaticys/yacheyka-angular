@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { URLSearchParams } from "@angular/http";
-import { BoxesService } from "../../_services/boxes.service";
+import { BoxesService } from "../../core/boxes.service";
 
 @Component({
 	selector: 'sidebar',

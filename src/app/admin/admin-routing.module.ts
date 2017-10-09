@@ -5,16 +5,10 @@ import { AdminComponent } from './admin.component';
 import { AddComponent } from './add/add.component';
 import { AdmTableComponent } from './adm-table/adm-table.component';
 
-import { ScopeGuardService as ScopeGuard } from "../_auth0/scope-guard.service";
-
 const routes: Routes = [
     {
 		path: '', 
-		component: AdminComponent, 
-		canActivate: [ScopeGuard], 
-		data: {
-			expectedScopes: ['write:messages']
-		},
+		component: AdminComponent,
 		children: [
 			{path: '', redirectTo: 'table', pathMatch: 'full'},
 			{path: 'table', component: AdmTableComponent},
