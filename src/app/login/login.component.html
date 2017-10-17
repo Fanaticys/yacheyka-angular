@@ -1,0 +1,25 @@
+<div class="login-form-wrapper">
+  <div class="login-form" @loginAnimation>
+    <h3>Login</h3>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="username" formControlName="username">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="password" formControlName="password">
+      </div>
+      <div class="error-login" *ngIf="error" @errorAnimation>
+        Invalid login or password
+        <div class="close-error-login" (click)="closeError(form)">
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <button class="btn btn-success" type="submit" [disabled]="loginForm.pristine || loginForm.invalid">
+        <span *ngIf="!loading">Log in</span>
+        <div class="loader" *ngIf="loading"></div>
+      </button>
+      
+    </form>
+  </div>
+</div>

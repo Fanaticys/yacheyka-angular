@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { adminRouteAnimation, adminTableAnimation } from "../admin.animation";
-import { BoxesService } from '../../core/boxes.service';
+import { AdminService } from '../admin.service';
 import { ComponentService } from "../../core/component.service";
 
 @Component({
@@ -15,7 +15,7 @@ import { ComponentService } from "../../core/component.service";
 export class AdmTableComponent implements OnInit {
   @HostBinding('@adminRouteAnimation') animation;
   constructor(
-    public boxesService: BoxesService,
+    public adminService: AdminService,
     private componentService: ComponentService
   ) { }
 
@@ -27,7 +27,6 @@ export class AdmTableComponent implements OnInit {
     {title: 'Ширина', name: 'width', className: 'width', show: false, config: true, sort: true},
     {title: 'Глубина', name: 'length', className: 'length', show: false, config: true, sort: true},
     {title: 'Цена', name: 'price', className: 'price', show: true, sort: true},
-    {title: 'Банк', name: 'bank', className: 'bank', show: true, sort: true},
     {title: 'Адрес', name: 'address', className: 'address', show: true, config: true, sort: true},
     {title: 'Город', name: 'town', className: 'town', show: true, config: true, sort: true},
     {title: 'Залог', name: 'deposit', className: 'deposit', show: false, config: true, sort: true},
@@ -65,7 +64,7 @@ export class AdmTableComponent implements OnInit {
 
   searchBoxes(){
     this.loading = true;
-    return this.boxesService.searchBoxes({}).subscribe(boxes => {
+    return this.adminService.searchBoxes().subscribe(boxes => {
       this.data = boxes;
       this.loading = false;
       this.length = this.data.length;
@@ -161,7 +160,7 @@ export class AdmTableComponent implements OnInit {
   public deleteBox(box){
     let flag = confirm("Вы действительно хотите удалить ячейку?");
     if(!flag) return false;
-    return this.boxesService.deleteBox(box._id).subscribe(data => {
+    return this.adminService.deleteBox(box._id).subscribe(data => {
       let index = this.data.indexOf(box);
       let modulus = this.data.length % this.itemsPerPage;
       let page = Math.round(this.data.length / this.itemsPerPage);
@@ -194,7 +193,7 @@ export class AdmTableComponent implements OnInit {
 
   public updateBox(){
     this.componentService.showModal(false);
-    this.boxesService
+    this.adminService
       .updateBox(this.modalBox)
       .subscribe(
         data => this.componentService.showResultHandling('success', "Успешно изменено"),

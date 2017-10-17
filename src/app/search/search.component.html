@@ -5,7 +5,7 @@
 		<button type="button" class="btn btn-default config" (click)="toggleConfig()">
 			<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 		</button>
-		<a type="button" class="btn btn-default admin" *ngIf="auth.isAuthenticated() && auth.userHasScopes(['write:messages'])" routerLink="/admin">Admin</a>
+		<a type="button" class="btn btn-default admin" routerLink="/admin" *ngIf="authService.isAuthenticated()">Admin</a>
 		<a class="btn btn-success help" (click)="toggleHelp()">Помощь</a>
 	</div>
 	<result-table #table [data]='boxes' [loading]="loading"></result-table>

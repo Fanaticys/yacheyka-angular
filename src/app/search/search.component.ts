@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, HostBinding } from '@angular/core';
-import { BoxesService } from '../core/boxes.service';
-import { AuthService } from "../core/_auth0/auth.service";
+import { SearchService } from './search.service';
 import { routeAnimation } from "../route.animation";
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-search',
@@ -11,7 +11,7 @@ import { routeAnimation } from "../route.animation";
 })
 export class SearchComponent implements OnInit {
   @HostBinding('@routeAnimation') animation;
-  constructor( private boxesService: BoxesService, public auth: AuthService) {
+  constructor( private searchService: SearchService, public authService: AuthService) {
     this.searchBoxes();
   }
   public boxes = [];
@@ -44,7 +44,7 @@ export class SearchComponent implements OnInit {
   searchBoxes(){
     this.boxes = [];
     this.loading = true;
-    return this.boxesService.searchBoxes(this.params).subscribe(
+    return this.searchService.searchBoxes(this.params).subscribe(
       boxes => this.boxes = boxes,
       err => err,
       () => this.loading = false

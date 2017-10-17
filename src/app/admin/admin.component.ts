@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "../core/_auth0/auth.service";
+import { AuthService } from '../core/auth.service';
+import { AdminService } from './admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -11,14 +12,13 @@ export class AdminComponent implements OnInit {
   profile: any;
   sidebar = false;
 
-  constructor(public auth: AuthService) {
-    if(this.auth.userProfile){
-      this.profile = this.auth.userProfile;
-    } else {
-      this.auth.getProfile((err, profile) => {
-        this.profile = profile;
-      });
-    }
+  constructor(
+    public authService: AuthService,
+    public adminService: AdminService
+  ) {
+    adminService.getProfile().subscribe(obj => {
+      this.profile = obj;
+    });
   }
 
   public toggleSidebar(){
@@ -27,5 +27,8 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(){}
 
+  logout(){
+    this.authService.logout();
+  }
 
 }

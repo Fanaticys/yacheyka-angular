@@ -7,6 +7,7 @@ import { TableDemoComponent } from '../components/result-table/table.component';
 import { PaginationModule } from 'ngx-bootstrap';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { HelpComponent } from '../components/help/help.component';
+import { SearchService } from './search.service';
 
 import { NouisliderModule } from 'ng2-nouislider';
 
@@ -23,7 +24,8 @@ import { NouisliderModule } from 'ng2-nouislider';
         SearchRoutingModule,
         NouisliderModule,
         PaginationModule.forRoot()
-    ]
+    ],
+    providers: [SearchService]
 })
 export class SearchModule {
 

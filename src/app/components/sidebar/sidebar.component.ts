@@ -1,11 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { URLSearchParams } from "@angular/http";
-import { BoxesService } from "../../core/boxes.service";
+import { SidebarService } from "./sidebar.service";
 
 @Component({
 	selector: 'sidebar',
 	templateUrl: 'sidebar.component.html',
-	styleUrls: ['sidebar.component.sass']
+	styleUrls: ['sidebar.component.sass'],
+	providers: [SidebarService]
 })
 
 export class SidebarComponent implements OnInit {
@@ -78,16 +79,16 @@ export class SidebarComponent implements OnInit {
 		this.endMin_term = value > this.rangeValues.maxMinTerm ? this.rangeValues.maxMinTerm : value < this.startMin_term ? this.startMin_term : value;
 	}
 	
-	constructor(private boxesService: BoxesService){
+	constructor(private sidebarService: SidebarService){
 		this.getRangeValues();
-		this.boxesService.getBanks().subscribe(data => this.banks = data);
-		this.boxesService.getTowns().subscribe(data => this.towns = data);
+		this.sidebarService.getBanks().subscribe(data => this.banks = data);
+		this.sidebarService.getTowns().subscribe(data => this.towns = data);
 	}
 
 	ngOnInit(){ }
 
 	getRangeValues(){
-		this.boxesService.getRangeValues().subscribe(data => {
+		this.sidebarService.getRangeValues().subscribe(data => {
 			this.rangeValues = data;
 			// START // Just for slider's work. With full BD you can remove it!
 			if(data.maxDeposit == 0){

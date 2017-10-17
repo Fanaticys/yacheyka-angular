@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
-import { BoxesService } from "../../core/boxes.service";
 import { ComponentService } from "../../core/component.service";
 import { adminRouteAnimation } from "../admin.animation";
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-add',
@@ -12,15 +12,13 @@ import { adminRouteAnimation } from "../admin.animation";
 export class AddComponent implements OnInit {
 
   constructor(
-    private boxesService: BoxesService,
-    private componentService: ComponentService
+    private componentService: ComponentService,
+    private adminService: AdminService
   ) { }
   @HostBinding('@adminRouteAnimation') animation;
   ngOnInit() { }
 
   box = {
-    bank_id: '102',
-    bank: '102',
     address: '102',
     town: '102',
     height: '102',
@@ -37,7 +35,7 @@ export class AddComponent implements OnInit {
   };
 
   addBox(){
-    this.boxesService.addBox(this.box).subscribe(
+    this.adminService.addBox(this.box).subscribe(
       success => this.componentService.showResultHandling('success', "Успешно добавлено"),
       err => this.componentService.showResultHandling('error', JSON.stringify(err)) 
     )

@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   	this.changingInterval = setInterval(() => {
   		i = (i >= 3) ? 1 : ++i;
 			this.bg = 'bg-' + i;
-  	}, 5000);
+  	}, 7000);
   }
 
 }

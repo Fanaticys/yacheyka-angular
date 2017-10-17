@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap';
 import { ModalComponent } from '../components/modal/modal.component';
 import { ResultHandlerComponent } from '../components/result-handler/result-handler.component';
+import { AdminService } from './admin.service';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ResultHandlerComponent } from '../components/result-handler/result-hand
     AdmTableComponent,
     ModalComponent,
     ResultHandlerComponent
-  ]
+  ],
+  providers: [AdminService]
 })
 export class AdminModule { }

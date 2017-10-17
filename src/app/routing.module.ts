@@ -1,22 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginComponent } from "./components/login/login.component";
 import { CallbackComponent } from './components/callback/callback.component';
-import { ScopeGuardService } from './core/_auth0/scope-guard.service';
+import { AuthGuardService } from './core/auth-guard.service';
 
 const routes: Routes = [
 	{path: 'search',  loadChildren: 'app/search/search.module#SearchModule'},
 	{
 		path: 'admin', 
 		loadChildren: 'app/admin/admin.module#AdminModule',
-		canActivate: [ScopeGuardService], 
-		data: {
-			expectedScopes: ['write:messages']
-		}
+		canActivate: [AuthGuardService]
 	},
 	{path: 'callback', component: CallbackComponent},
-	{path: 'login', component: LoginComponent},
+	{path: 'login', loadChildren: "app/login/login.module#LoginModule"},
 	{path: '**', redirectTo: '', pathMatch: 'full'}
 ]
 
