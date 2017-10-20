@@ -11,7 +11,7 @@ import { ResultHandlerComponent } from '../components/result-handler/result-hand
 import { AdminService } from './admin.service';
 import { Http } from '@angular/http';
 
-const adminServiceFactory = (http: Http) => {
+export const adminServiceFactory = (http: Http) => {
   return new AdminService(http, () => localStorage.getItem('token'));
 }
 
