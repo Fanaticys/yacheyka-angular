@@ -9,6 +9,11 @@ import { PaginationModule } from 'ngx-bootstrap';
 import { ModalComponent } from '../components/modal/modal.component';
 import { ResultHandlerComponent } from '../components/result-handler/result-handler.component';
 import { AdminService } from './admin.service';
+import { Http } from '@angular/http';
+
+const adminServiceFactory = (http: Http) => {
+  return new AdminService(http, () => localStorage.getItem('token'));
+}
 
 @NgModule({
   imports: [
@@ -24,6 +29,12 @@ import { AdminService } from './admin.service';
     ModalComponent,
     ResultHandlerComponent
   ],
-  providers: [AdminService]
+  providers: [
+    {
+      provide: AdminService,
+      useFactory: adminServiceFactory,
+      deps: [Http]
+    }
+  ]
 })
 export class AdminModule { }

@@ -66,7 +66,7 @@
 </div>
 
 <app-modal>
-	<div class="edit-container">
+	<div class="edit-container" *ngIf="modalBox">
 		<div class="container">
 			<div class="row">
 				<label class="col-md-2">Высота<br><input class="form-control" [(ngModel)]="modalBox.height" type="text"></label>

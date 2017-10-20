@@ -8,11 +8,10 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class AdminService {
-    constructor(private http: Http){} 
-
-    private getToken(){
-        return localStorage.getItem('token');
-    }
+    constructor(
+        private http: Http,
+        private getToken: () => string
+    ){} 
 
     getProfile(){
         const token = this.getToken();

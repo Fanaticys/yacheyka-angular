@@ -3,7 +3,7 @@
     <img src="http://media.istockphoto.com/photos/businessman-silhouette-as-avatar-or-default-profile-picture-picture-id476085198?k=6&m=476085198&s=612x612&w=0&h=5cDQxXHFzgyz8qYeBQu2gCZq1_TN0z40e_8ayzne0X0=" alt="avatar">
     <div class="user">
         <label><i class="fa fa-user" aria-hidden="true"></i> User:</label>
-        <p>{{profile.email}}</p>
+        <p>{{profile?.email}}</p>
     </div>
     <button type="button" class="btn exit large" (click)="authService.logout()"><i class="fa fa-external-link" aria-hidden="true"></i> Выход</button>
     <button type="button" class="btn exit small" (click)="authService.logout()"><i class="fa fa-external-link" aria-hidden="true"></i></button>
