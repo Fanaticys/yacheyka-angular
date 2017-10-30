@@ -9,19 +9,19 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { HelpComponent } from '../components/help/help.component';
 import { SearchService } from './search.service';
 
-import { NouisliderComponent } from 'ng2-nouislider';
+import { NouisliderModule } from 'ng2-nouislider';
 
 @NgModule({
     declarations: [
         SearchComponent,
         TableDemoComponent,
         SidebarComponent,
-        HelpComponent,
-        NouisliderComponent
+        HelpComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
+        NouisliderModule,
         SearchRoutingModule,
         PaginationModule.forRoot()
     ],
