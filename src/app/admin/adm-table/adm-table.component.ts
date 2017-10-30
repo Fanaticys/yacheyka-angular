@@ -197,7 +197,7 @@ export class AdmTableComponent implements OnInit {
       .updateBox(this.modalBox)
       .subscribe(
         data => this.componentService.showResultHandling('success', "Успешно изменено"),
-        err => this.componentService.showResultHandling('error', JSON.stringify(err))
+        err => this.componentService.showResultHandling('error', err)
       )
   }
 

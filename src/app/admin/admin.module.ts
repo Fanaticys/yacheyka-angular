@@ -10,14 +10,13 @@ import { ModalComponent } from '../components/modal/modal.component';
 import { ResultHandlerComponent } from '../components/result-handler/result-handler.component';
 import { AdminService } from './admin.service';
 import { Http } from '@angular/http';
-
-export const adminServiceFactory = (http: Http) => {
-  return new AdminService(http, () => localStorage.getItem('token'));
-}
+import { AdminInterceptor } from './admin.interceptor';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     FormsModule,
     PaginationModule.forRoot(),
     AdminRoutingModule
@@ -30,10 +29,11 @@ export const adminServiceFactory = (http: Http) => {
     ResultHandlerComponent
   ],
   providers: [
+    AdminService,
     {
-      provide: AdminService,
-      useFactory: adminServiceFactory,
-      deps: [Http]
+      provide: HTTP_INTERCEPTORS,
+      useClass: AdminInterceptor,
+      multi: true
     }
   ]
 })

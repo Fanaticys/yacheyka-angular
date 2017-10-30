@@ -37,7 +37,7 @@ export class AddComponent implements OnInit {
   addBox(){
     this.adminService.addBox(this.box).subscribe(
       success => this.componentService.showResultHandling('success', "Успешно добавлено"),
-      err => this.componentService.showResultHandling('error', JSON.stringify(err)) 
+      err => this.componentService.showResultHandling('error', err) 
     )
   }
 
