@@ -21,7 +21,7 @@ export class SearchService {
     for(let name in options){
       params.set(name, options[name]);
     }
-  	return this.http.get('/api/boxes', {search: params})
+  	return this.http.get('http://localhost:8080/api/boxes', {search: params})
   	  .map(response => response.json())
       .catch(this.handleError);
   }

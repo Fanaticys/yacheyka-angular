@@ -16,11 +16,11 @@ import { HomeModule } from './home/home.module';
     CallbackComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'my-app'}),
     BrowserAnimationsModule,
     HttpModule,
-    CoreModule,
     HomeModule,
+    CoreModule,
     RoutingModule
   ],
   bootstrap: [AppComponent]

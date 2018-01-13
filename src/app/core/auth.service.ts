@@ -1,17 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/timer';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class AuthService {
     public refreshSubscription;
     public redirectUrl: String = '/admin';
-    constructor(private http: Http, public router: Router) { }
+    constructor(private http: Http, public router: Router, @Inject(PLATFORM_ID) private platformId: Object) {}
 
     private handleError(error: any){
         console.error('Произошла ошибка', error);
@@ -24,7 +28,7 @@ export class AuthService {
     }
 
     login(data){
-        return this.http.post('/api/login', data)
+        return this.http.post('http://localhost:8080/api/login', data)
         .map(response => {
             const data = response.json();
             if(data.success){
@@ -45,9 +49,13 @@ export class AuthService {
     }
 
     isAuthenticated(){
-        const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-        const dateNow = Math.floor(new Date().getTime());
-        return dateNow < expiresAt;
+        if (isPlatformBrowser(this.platformId)){
+            const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+            const dateNow = Math.floor(new Date().getTime());
+            return dateNow < expiresAt;
+        } else {
+            return false;
+        }
     }
 
     scheduleRenewal(){
@@ -57,7 +65,8 @@ export class AuthService {
 
         const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
         
-        const source = Observable.of(expiresAt).flatMap(
+        // const source = Observable.of(expiresAt).flatMap(
+        const source = Observable.of(expiresAt).mergeMap(
             expiresAt => {
     
             const now = Date.now();
@@ -79,7 +88,7 @@ export class AuthService {
         });
         const options = new RequestOptions({headers: headers});
         console.log('renewToken was called');
-        return this.http.get('/api/admin/renew', options)
+        return this.http.get('http://localhost:8080/api/admin/renew', options)
             .map(response => response.json())
             .catch(this.handleError);
     }

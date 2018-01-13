@@ -17,19 +17,19 @@ export class SidebarService {
     }
 
     getRangeValues(){
-        return this.http.get('/api/range-values')
+        return this.http.get('http://localhost:8080/api/range-values')
             .map(response => response.json())
             .catch(this.handleError);
     }
 
     getBanks(){
-        return this.http.get('/api/banks')
+        return this.http.get('http://localhost:8080/api/banks')
             .map(response => response.json())
             .catch(this.handleError);
     }
 
     getTowns(){
-        return this.http.get('/api/towns')
+        return this.http.get('http://localhost:8080/api/towns')
             .map(response => response.json())
             .catch(this.handleError);
     }

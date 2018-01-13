@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
 import { TableDemoComponent } from '../components/result-table/table.component';
-import { PaginationModule } from 'ngx-bootstrap';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { HelpComponent } from '../components/help/help.component';
 import { SearchService } from './search.service';
