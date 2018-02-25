@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RoutingModule } from './routing.module';
 
@@ -18,7 +18,7 @@ import { HomeModule } from './home/home.module';
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
     HomeModule,
     CoreModule,
     RoutingModule

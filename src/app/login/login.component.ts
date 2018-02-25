@@ -49,6 +49,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(
       data => {
         if(data.success){
+          this.authService.setSession(data.token, data.expires_at);
+          this.authService.scheduleRenewal();
           this.loginForm.reset();
           this.router.navigate([redirectUrl]);
         } else {  

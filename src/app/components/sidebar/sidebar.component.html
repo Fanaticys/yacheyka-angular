@@ -9,12 +9,12 @@
 	<div *ngIf="showSlider" class="sidebar-content">
 		<div class="filter-block">
 			<h4>Банки</h4>
-			<select class="form-control" [(ngModel)]="town" (change)='updateParams()'>
+			<select class="form-control" [(ngModel)]="town">
 				<option value="">Выбрать город</option>
 				<option *ngFor="let town of towns" value="{{town?.town}}">{{town?.town}}</option>
 			</select>
 			<div class="bank-block-checkbox"> 
-				<label *ngFor="let bank of banks"><input type="checkbox" (change)="updateParams()" [(ngModel)]="bank.checked" value="{{bank.value}}"> {{bank.name}}</label>
+				<label *ngFor="let bank of banks"><input type="checkbox" [(ngModel)]="bank.checked" value="{{bank.value}}"> {{bank.name}}</label>
 			</div>
 		</div>
 
@@ -23,7 +23,7 @@
 		<div class="filter-block">
 			<h4>Цена</h4>
 			<p>Строк:</p>
-			<select class="form-control" [(ngModel)]="term" (change)='updateParams()'>
+			<select class="form-control" [(ngModel)]="term">
 				<option value="price_per_day">1 день</option>
 				<option value="price_per_month">До 1 месяца</option>
 				<option value="price_for_3_months">От 1 до 3 месяцев</option>
@@ -31,10 +31,10 @@
 				<option value="price_per_year">От 6 до 12 месяцев</option>
 				<option value="price_more_year">От 12 месяцев</option>
 			</select>
-			<input class="form-control" type="number" (change)="_startPrice=$event.target.value; changeRange()" [(ngModel)]="startPrice"> &mdash; <input class="form-control" type="number" (change)="_endPrice=$event.target.value; changeRange()" [(ngModel)]="endPrice">
+			<input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="priceRange[0]"> &mdash; <input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="priceRange[1]">
 			<span class="input-name">грн</span>
 			<div class="nouislider-wrapper">
-				<nouislider [connect]="true" [min]="rangeValues.minPrice" [max]="rangeValues.maxPrice" [step]="1" (slide)="startPrice = $event[0]; endPrice = $event[1]" [(ngModel)]="priceRange" (ngModelChange)="updateParams()"></nouislider>
+				<nouislider [connect]="true" [min]="rangeValues.minPrice" [max]="rangeValues.maxPrice" [step]="1" [(ngModel)]="priceRange"></nouislider>
 			</div>
 		</div>
 
@@ -43,24 +43,24 @@
 		<div class="filter-block">
 			<h4>Размер</h4>
 			<p>Высота:</p>
-			<input class="form-control" type="number" (change)="_startHeight=$event.target.value; changeRange()" [(ngModel)]="startHeight"> &mdash; <input class="form-control" type="number" (change)="_endHeight=$event.target.value; changeRange()" [(ngModel)]="endHeight">
+			<input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="heightRange[0]"> &mdash; <input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="heightRange[1]">
 			<span class="input-name">мм</span>
 			<div class="nouislider-wrapper">
-				<nouislider [connect]="true" [min]="rangeValues.minHeight" [max]="rangeValues.maxHeight" [step]="1" (slide)="startHeight = $event[0]; endHeight = $event[1]" [(ngModel)]="heightRange" (ngModelChange)="updateParams()"></nouislider>
+				<nouislider [connect]="true" [min]="rangeValues.minHeight" [max]="rangeValues.maxHeight" [step]="1" [(ngModel)]="heightRange"></nouislider>
 			</div>
 
 			<p>Ширина:</p>
-			<input class="form-control" type="number" (change)="_startWidth=$event.target.value; changeRange()" [(ngModel)]="startWidth"> &mdash; <input class="form-control" type="number" (change)="_endWidth=$event.target.value; changeRange()" [(ngModel)]="endWidth">
+			<input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="widthRange[0]"> &mdash; <input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="widthRange[1]">
 			<span class="input-name">мм</span>
 			<div class="nouislider-wrapper">
-				<nouislider [connect]="true" [min]="rangeValues.minWidth" [max]="rangeValues.maxWidth" [step]="1" (slide)="startWidth = $event[0]; endWidth = $event[1]" [(ngModel)]="widthRange" (ngModelChange)="updateParams()"></nouislider>
+				<nouislider [connect]="true" [min]="rangeValues.minWidth" [max]="rangeValues.maxWidth" [step]="1" [(ngModel)]="widthRange"></nouislider>
 			</div>
 
 			<p>Глубина:</p>
-			<input class="form-control" type="number" (change)="_startLength=$event.target.value; changeRange()" [(ngModel)]="startLength"> &mdash; <input class="form-control" type="number" (change)="_endLength=$event.target.value; changeRange()" [(ngModel)]="endLength">
+			<input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="lengthRange[0]"> &mdash; <input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="lengthRange[1]">
 			<span class="input-name">мм</span>
 			<div class="nouislider-wrapper">
-				<nouislider [connect]="true" [min]="rangeValues.minLength" [max]="rangeValues.maxLength" [step]="1" (slide)="startLength = $event[0]; endLength = $event[1]" [(ngModel)]="lengthRange" (ngModelChange)="updateParams()"></nouislider>
+				<nouislider [connect]="true" [min]="rangeValues.minLength" [max]="rangeValues.maxLength" [step]="1" [(ngModel)]="lengthRange"></nouislider>
 			</div>
 		</div>
 
@@ -69,17 +69,17 @@
 		<div class="filter-block">
 			<h4>Дополнительные параметры</h4>
 			<p>Залог:</p>
-			<input class="form-control deposit-input" type="number" (change)="_startDeposit=$event.target.value; changeRange()" [(ngModel)]="startDeposit"> &mdash; <input class="form-control deposit-input" type="number" (change)="_endDeposit=$event.target.value; changeRange()" [(ngModel)]="endDeposit">
+			<input class="form-control deposit-input" type="number" (change)="changeRange()" [(ngModel)]="depositRange[0]"> &mdash; <input class="form-control deposit-input" type="number" (change)="changeRange()" [(ngModel)]="depositRange[1]">
 			<span class="input-name">грн</span>
 			<div class="nouislider-wrapper">
-				<nouislider [connect]="true" [min]="rangeValues.minDeposit" [max]="rangeValues.maxDeposit" [step]="1" (slide)="startDeposit = $event[0]; endDeposit = $event[1]" [(ngModel)]="depositRange" (ngModelChange)="updateParams()"></nouislider>
+				<nouislider [connect]="true" [min]="rangeValues.minDeposit" [max]="rangeValues.maxDeposit" [step]="1" [(ngModel)]="depositRange"></nouislider>
 			</div>
 
 			<p>Строк:</p>
-			<input class="form-control" type="number" (change)="_startMin_term=$event.target.value; changeRange()" [(ngModel)]="startMin_term"> &mdash; <input class="form-control" type="number" (change)="_endMin_term=$event.target.value; changeRange()" [(ngModel)]="endMin_term">
+			<input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="min_termRange[0]"> &mdash; <input class="form-control" type="number" (change)="changeRange()" [(ngModel)]="min_termRange[1]">
 			<span class="input-name">дней</span>
 			<div class="nouislider-wrapper">
-				<nouislider [connect]="true" [min]="rangeValues.minMinTerm" [max]="rangeValues.maxMinTerm" [step]="1" (slide)="startMin_term = $event[0]; endMin_term = $event[1]" [(ngModel)]="min_termRange" (ngModelChange)="updateParams()"></nouislider>
+				<nouislider [connect]="true" [min]="rangeValues.minMinTerm" [max]="rangeValues.maxMinTerm" [step]="1" [(ngModel)]="min_termRange"></nouislider>
 			</div>
 		</div>
 

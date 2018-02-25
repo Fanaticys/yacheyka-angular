@@ -1,10 +1,10 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/timer';
@@ -15,28 +15,20 @@ import 'rxjs/add/observable/of';
 export class AuthService {
     public refreshSubscription;
     public redirectUrl: String = '/admin';
-    constructor(private http: Http, public router: Router, @Inject(PLATFORM_ID) private platformId: Object) {}
+    constructor(private http: HttpClient, public router: Router, @Inject(PLATFORM_ID) private platformId: Object) {}
 
     private handleError(error: any){
         console.error('Произошла ошибка', error);
         return Observable.throw(error.message || error);
     }
 
-    private setSession(token, expiration){
+    public setSession(token, expiration){
         localStorage.setItem('token', token);
         localStorage.setItem('expires_at', expiration);
     }
 
     login(data){
-        return this.http.post('http://localhost:8080/api/login', data)
-        .map(response => {
-            const data = response.json();
-            if(data.success){
-                this.setSession(data.token, data.expires_at);
-                this.scheduleRenewal();
-            }
-            return data;
-        })
+        return this.http.post('/api/login', data)
         .catch(this.handleError);
     }
 
@@ -83,13 +75,11 @@ export class AuthService {
     }
 
     renewToken(){
-        const headers = new Headers({
+        const headers = new HttpHeaders({
             'token': localStorage.getItem('token')
         });
-        const options = new RequestOptions({headers: headers});
         console.log('renewToken was called');
-        return this.http.get('http://localhost:8080/api/admin/renew', options)
-            .map(response => response.json())
+        return this.http.get('/api/admin/renew', { headers: headers })
             .catch(this.handleError);
     }
 

@@ -15,18 +15,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	constructor( @Inject(PLATFORM_ID) private platformId: Object) { }
 
-	public bg = 'bg-1';
-	public counter = 1;
+	public images = ['../../assets/img/1.jpg', '../../assets/img/2.jpg', '../../assets/img/3.jpg'];
+	public bg = '../../assets/img/2.jpg';
+	public counter = 0;
 	private changingInterval;
+	private loadedImages = 0;
 
   ngOnInit() {
-		if (isPlatformBrowser(this.platformId)) {
-			this.changingInterval = Observable.interval(7000)
-				.subscribe(() => {
-					this.counter = (this.counter >= 3) ? 1 : ++this.counter;
-					this.bg = 'bg-' + this.counter;
-				});
-		}
+		// this.loadImages();
   }
 
   ngOnDestroy(){
@@ -34,5 +30,29 @@ export class HomeComponent implements OnInit, OnDestroy {
 			this.changingInterval.unsubscribe();
 	  }
 	}
-	
+
+	loadImages(){
+		this.images.forEach(image => {
+			let i = new Image();
+			i.onload = () => {
+				this.loadedImages++;
+				if (this.loadedImages == this.images.length) {
+					this.changeBG();
+				}
+			};
+			i.src = image;
+		});
+	}
+
+	changeBG(){
+		if (isPlatformBrowser(this.platformId)) {
+			this.bg = this.images[this.counter];
+			this.changingInterval = Observable.interval(3000)
+				.subscribe(() => {
+					this.counter = (this.counter == this.images.length - 1) ? 0 : ++this.counter;
+					this.bg = this.images[this.counter];
+				});
+		}
+	}
+
 }

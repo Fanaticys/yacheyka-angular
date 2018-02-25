@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -9,7 +9,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class SearchService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   private handleError(error: any){
     console.error('Произошла ошибка', error);
@@ -17,12 +17,11 @@ export class SearchService {
   }
 
   searchBoxes(options: object){
-    let params: URLSearchParams = new URLSearchParams();
+    let params: HttpParams = new HttpParams();
     for(let name in options){
-      params.set(name, options[name]);
+      params = params.append(name, options[name]);
     }
-  	return this.http.get('http://localhost:8080/api/boxes', {search: params})
-  	  .map(response => response.json())
+    return this.http.get('/api/boxes', { params: params})
       .catch(this.handleError);
   }
 

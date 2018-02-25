@@ -12,7 +12,7 @@ import { AuthService } from '../core/auth.service';
 export class SearchComponent implements OnInit {
   @HostBinding('@routeAnimation') animation;
   constructor( private searchService: SearchService, public authService: AuthService) {
-    this.searchBoxes();
+    this.searchBoxes({});
   }
   public boxes = [];
   public enable: boolean = false;
@@ -41,18 +41,14 @@ export class SearchComponent implements OnInit {
     this.shawMapComponent.toggleShow();
   }
 
-  searchBoxes(){
+  searchBoxes(params){
     this.boxes = [];
     this.loading = true;
-    return this.searchService.searchBoxes(this.params).subscribe(
+    return this.searchService.searchBoxes(params).subscribe(
       boxes => this.boxes = boxes,
       err => err,
       () => this.loading = false
     );
-  }
-
-  paramsUpdated(event){
-    this.params = event;
   }
 
 }

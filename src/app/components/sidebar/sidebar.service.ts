@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -9,7 +9,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class SidebarService {
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     private handleError(error: any){
         console.error('Произошла ошибка', error);
@@ -17,20 +17,17 @@ export class SidebarService {
     }
 
     getRangeValues(){
-        return this.http.get('http://localhost:8080/api/range-values')
-            .map(response => response.json())
+        return this.http.get('/api/range-values')
             .catch(this.handleError);
     }
 
     getBanks(){
-        return this.http.get('http://localhost:8080/api/banks')
-            .map(response => response.json())
+        return this.http.get('/api/banks')
             .catch(this.handleError);
     }
 
     getTowns(){
-        return this.http.get('http://localhost:8080/api/towns')
-            .map(response => response.json())
+        return this.http.get('/api/towns')
             .catch(this.handleError);
     }
 }
